@@ -35,6 +35,11 @@ class schoolBIT{
 		curl_close($this->ch);
 	}
 
+	function setLoginInfo($username = null, $password = null) {
+		if($username) $this->username = $username;
+		if($password) $this->password = $password;
+	}
+
 	static function getWeekLangArr($key = 0){
 		return $key?array_flip(self::$weekLangArr):self::$weekLangArr;
 	}
@@ -49,6 +54,11 @@ class schoolBIT{
 	}
 
 	function login(){
+		if(!$this->username || !$this->password){
+			$this->last_error = 'Ineeds_login_info';
+			return false;
+		}
+
 		$ch = $this->getCH();
 		curl_setopt($ch, CURLOPT_URL, "http://10.5.2.80/default2.aspx");
 		curl_exec($ch);
