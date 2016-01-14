@@ -13,13 +13,13 @@ class schoolBIT{
 
 	public static $schedulePagePostViewState = '__EVENTTARGET=xqd&__EVENTARGUMENT=&__VIEWSTATE=dDwtMTY0MzA1MTY5MTt0PDtsPGk8MT47PjtsPHQ8O2w8aTwxPjtpPDM%2BO2k8Nz47aTwxMD47aTwxMj47aTwxND47aTwxNj47aTwxOD47aTwyMD47aTwyMj47aTwyND47aTwyNj47aTwzMD47PjtsPHQ8cDxwPGw8VGV4dDs%2BO2w8MDIwMTMtMjAxNDE7Pj47Pjs7Pjt0PHQ8cDxwPGw8RGF0YVRleHRGaWVsZDtEYXRhVmFsdWVGaWVsZDs%2BO2w8eG47eG47Pj47Pjt0PGk8MTM%2BO0A8MjAxNi0yMDE3OzIwMTUtMjAxNjsyMDE0LTIwMTU7MjAxMy0yMDE0OzIwMTItMjAxMzsyMDExLTIwMTI7MjAxMC0yMDExOzIwMDktMjAxMDsyMDA4LTIwMDk7MjAwNy0yMDA4OzIwMDYtMjAwNzsyMDA1LTIwMDY7XGU7PjtAPDIwMTYtMjAxNzsyMDE1LTIwMTY7MjAxNC0yMDE1OzIwMTMtMjAxNDsyMDEyLTIwMTM7MjAxMS0yMDEyOzIwMTAtMjAxMTsyMDA5LTIwMTA7MjAwOC0yMDA5OzIwMDctMjAwODsyMDA2LTIwMDc7MjAwNS0yMDA2O1xlOz4%2BO2w8aTwxPjs%2BPjs7Pjt0PHQ8OztsPGk8MD47Pj47Oz47dDxwPHA8bDxUZXh0Oz47bDzlrablj7fvvJoxMTIwMTQwMzY2Oz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzlp5PlkI3vvJrmvZjlvJjlroc7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOWtpumZou%2B8muacuueUteWtpumZojs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w85LiT5Lia77ya5py65qKw55S15a2Q5bel56iLOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzooYzmlL%2Fnj63vvJowMjMxMTQwMjs%2BPjs%2BOzs%2BO3Q8QDA8cDxwPGw8UGFnZUNvdW50O18hSXRlbUNvdW50O18hRGF0YVNvdXJjZUl0ZW1Db3VudDtEYXRhS2V5czs%2BO2w8aTwxPjtpPDQ%2BO2k8ND47bDw%2BOz4%2BOz47Ozs7Ozs7Ozs7PjtsPGk8MD47PjtsPHQ8O2w8aTwxPjtpPDI%2BO2k8Mz47aTw0Pjs%2BO2w8dDw7bDxpPDA%2BO2k8MT47aTwyPjtpPDM%2BO2k8ND47aTw1Pjs%2BO2w8dDxwPHA8bDxUZXh0Oz47bDznlLXlrZDlrp7kuaA7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOadjuaZk%2BWzsDs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8MS4wOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDwwMS0wMzs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8Jm5ic3BcOzs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8Jm5ic3BcOzs%2BPjs%2BOzs%2BOz4%2BO3Q8O2w8aTwwPjtpPDE%2BO2k8Mj47aTwzPjtpPDQ%2BO2k8NT47PjtsPHQ8cDxwPGw8VGV4dDs%2BO2w85bel56iL5a6e6Le1SS3mnLrnlLU7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOaWveWutuagizs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8Mjs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8MDEtMDM7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPCZuYnNwXDs7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPCZuYnNwXDs7Pj47Pjs7Pjs%2BPjt0PDtsPGk8MD47aTwxPjtpPDI%2BO2k8Mz47aTw0PjtpPDU%2BOz47bDx0PHA8cDxsPFRleHQ7PjtsPOWkp%2BWtpueUn%2BiBjOS4mueUn%2Ba2r%2BinhOWIkjs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w85pa56JW%2BOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDwyOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDwwMS0wMzs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8Jm5ic3BcOzs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8Jm5ic3BcOzs%2BPjs%2BOzs%2BOz4%2BO3Q8O2w8aTwwPjtpPDE%2BO2k8Mj47aTwzPjtpPDQ%2BO2k8NT47PjtsPHQ8cDxwPGw8VGV4dDs%2BO2w855S16Lev5YiG5p6Q5a6e6aqMQTs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w85byg5bOwL%2BW8oOWLh%2BW8ui%2Fmlrnoirg7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPDEuMDs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8MDAtMDA7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPCZuYnNwXDs7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPCZuYnNwXDs7Pj47Pjs7Pjs%2BPjs%2BPjs%2BPjt0PEAwPHA8cDxsPFBhZ2VDb3VudDtfIUl0ZW1Db3VudDtfIURhdGFTb3VyY2VJdGVtQ291bnQ7RGF0YUtleXM7PjtsPGk8MT47aTwwPjtpPDA%2BO2w8Pjs%2BPjs%2BOzs7Ozs7Ozs7Oz47Oz47dDxAMDxwPHA8bDxQYWdlQ291bnQ7XyFJdGVtQ291bnQ7XyFEYXRhU291cmNlSXRlbUNvdW50O0RhdGFLZXlzOz47bDxpPDE%2BO2k8NT47aTw1PjtsPD47Pj47Pjs7Ozs7Ozs7Ozs%2BO2w8aTwwPjs%2BO2w8dDw7bDxpPDE%2BO2k8Mj47aTwzPjtpPDQ%2BO2k8NT47PjtsPHQ8O2w8aTwwPjtpPDE%2BO2k8Mj47aTwzPjtpPDQ%2BOz47bDx0PHA8cDxsPFRleHQ7PjtsPDIwMTUtMjAxNjs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8MTs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w855S15a2Q5a6e5LmgOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzmnY7mmZPls7A7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPDEuMDs%2BPjs%2BOzs%2BOz4%2BO3Q8O2w8aTwwPjtpPDE%2BO2k8Mj47aTwzPjtpPDQ%2BOz47bDx0PHA8cDxsPFRleHQ7PjtsPDIwMTUtMjAxNjs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8MTs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w85bel56iL5a6e6Le1SS3mnLrnlLU7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOaWveWutuagizs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8Mjs%2BPjs%2BOzs%2BOz4%2BO3Q8O2w8aTwwPjtpPDE%2BO2k8Mj47aTwzPjtpPDQ%2BOz47bDx0PHA8cDxsPFRleHQ7PjtsPDIwMTUtMjAxNjs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8MTs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w85aSn5a2m55Sf6IGM5Lia55Sf5rav6KeE5YiSOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzmlrnolb47Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPDI7Pj47Pjs7Pjs%2BPjt0PDtsPGk8MD47aTwxPjtpPDI%2BO2k8Mz47aTw0Pjs%2BO2w8dDxwPHA8bDxUZXh0Oz47bDwyMDE1LTIwMTY7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPDE7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOeUtei3r%2BWIhuaekOWunumqjEE7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOW8oOWzsC%2FlvKDli4flvLov5pa56Iq4Oz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDwxLjA7Pj47Pjs7Pjs%2BPjt0PDtsPGk8MD47aTwxPjtpPDI%2BO2k8Mz47aTw0Pjs%2BO2w8dDxwPHA8bDxUZXh0Oz47bDwyMDE1LTIwMTY7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPDE7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOaWh%2BeMruajgOe0ojs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w85bq35qGC6IuxOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDwxOz4%2BOz47Oz47Pj47Pj47Pj47dDxAMDxwPHA8bDxQYWdlQ291bnQ7XyFJdGVtQ291bnQ7XyFEYXRhU291cmNlSXRlbUNvdW50O0RhdGFLZXlzOz47bDxpPDE%2BO2k8MTY%2BO2k8MTY%2BO2w8Pjs%2BPjs%2BOzs7Ozs7Ozs7Oz47bDxpPDA%2BOz47bDx0PDtsPGk8MT47aTwyPjtpPDM%2BO2k8ND47aTw1PjtpPDY%2BO2k8Nz47aTw4PjtpPDk%2BO2k8MTA%2BO2k8MTE%2BO2k8MTI%2BO2k8MTM%2BO2k8MTQ%2BO2k8MTU%2BO2k8MTY%2BOz47bDx0PDtsPGk8MD47aTwxPjtpPDI%2BO2k8Mz47aTw0PjtpPDU%2BO2k8Nj47aTw3PjtpPDg%2BOz47bDx0PHA8cDxsPFRleHQ7PjtsPOeUtei3r%2BWIhuaekOWunumqjEE7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPDE7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOW%2FheS%2Fruivvjs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8Jm5ic3BcOzs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w85L%2Bh5oGv5LiO55S15a2Q5a2m6ZmiOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzlv4Xkv67or747Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOW8oOWzsDs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w85ZGo5LiJ56ysOCw5LDEw6IqCe%2BesrDgtOOWRqH1cO%2BWRqOS4ieesrDgsOSwxMOiKgnvnrKwxMC0xMOWRqH1cO%2BWRqOS4ieesrDgsOSwxMOiKgnvnrKwxMi0xMuWRqH1cO%2BWRqOS4ieesrDgsOSwxMOiKgnvnrKwxNC0xNOWRqH1cO%2BWRqOS4ieesrDgsOSwxMOiKgnvnrKwxNi0xNuWRqH07Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOiJr%2BS5oeeQhuWtpualvELmoIs0MDZcO%2BiJr%2BS5oeeQhuWtpualvELmoIs0MDZcO%2BiJr%2BS5oeeQhuWtpualvELmoIs0MDZcO%2BiJr%2BS5oeeQhuWtpualvELmoIs0MDZcO%2BiJr%2BS5oeeQhuWtpualvELmoIs0MDY7Pj47Pjs7Pjs%2BPjt0PDtsPGk8MD47aTwxPjtpPDI%2BO2k8Mz47aTw0PjtpPDU%2BO2k8Nj47aTw3PjtpPDg%2BOz47bDx0PHA8cDxsPFRleHQ7PjtsPOW3peeoi%2BWunui3tUkt5py655S1Oz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDwyOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzlv4Xkv67or747Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPCZuYnNwXDs7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOacuueUteWtpumZojs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w85b%2BF5L%2Bu6K%2B%2BOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzmlr3lrrbmoIs7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPCZuYnNwXDs7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPCZuYnNwXDs7Pj47Pjs7Pjs%2BPjt0PDtsPGk8MD47aTwxPjtpPDI%2BO2k8Mz47aTw0PjtpPDU%2BO2k8Nj47aTw3PjtpPDg%2BOz47bDx0PHA8cDxsPFRleHQ7PjtsPOacuuWZqOS6uuamguiuujs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8Mi4wOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzmoKHlhazpgInor747Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOmAmuivhuaVmeiCsumAieS%2Fruivvjs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w855Sf5ZG95a2m6ZmiOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzmoKHlhazpgInor747Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOefs%2Beri%2BS8nzs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w85ZGo5Zub56ysMTEsMTIsMTPoioJ756ysNC0xNOWRqH07Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOiJr%2BS5oTEtMTA5Oz4%2BOz47Oz47Pj47dDw7bDxpPDA%2BO2k8MT47aTwyPjtpPDM%2BO2k8ND47aTw1PjtpPDY%2BO2k8Nz47aTw4Pjs%2BO2w8dDxwPHA8bDxUZXh0Oz47bDznlLXot6%2FliIbmnpDln7rnoYBBOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDwzLjU7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOW%2FheS%2Fruivvjs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8Jm5ic3BcOzs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w85L%2Bh5oGv5LiO55S15a2Q5a2m6ZmiOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzlv4Xkv67or747Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOmrmOa0quawkTs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w85ZGo5LiA56ysOCw56IqCe%2BesrDQtMTflkah9XDvlkajlm5vnrKw4LDnoioJ756ysNC0xN%2BWRqH07Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOiJr%2BS5oTItQTEwNVw76Imv5LmhMi1BNDAzOz4%2BOz47Oz47Pj47dDw7bDxpPDA%2BO2k8MT47aTwyPjtpPDM%2BO2k8ND47aTw1PjtpPDY%2BO2k8Nz47aTw4Pjs%2BO2w8dDxwPHA8bDxUZXh0Oz47bDznlLXot6%2FliIbmnpDlrp7pqoxBOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDwxLjA7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOW%2FheS%2Fruivvjs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8Jm5ic3BcOzs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w85L%2Bh5oGv5LiO55S15a2Q5a2m6ZmiOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzlv4Xkv67or747Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOW8oOWzsC%2FlvKDli4flvLov5pa56Iq4Oz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDwmbmJzcFw7Oz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDwmbmJzcFw7Oz4%2BOz47Oz47Pj47dDw7bDxpPDA%2BO2k8MT47aTwyPjtpPDM%2BO2k8ND47aTw1PjtpPDY%2BO2k8Nz47aTw4Pjs%2BO2w8dDxwPHA8bDxUZXh0Oz47bDznkIborrrlipvlraZCOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDw1LjA7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOW%2FheS%2Fruivvjs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8Jm5ic3BcOzs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w85a6H6Iiq5a2m6ZmiOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzlv4Xkv67or747Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOeZveiLpemYszs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w85ZGo5LiJ56ysMyw0LDXoioJ756ysNC0xOeWRqH1cO%2BWRqOS6lOesrDEsMuiKgnvnrKw0LTE55ZGofTs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w86Imv5LmhMS0yMDdcO%2BiJr%2BS5oTEtMjA3Oz4%2BOz47Oz47Pj47dDw7bDxpPDA%2BO2k8MT47aTwyPjtpPDM%2BO2k8ND47aTw1PjtpPDY%2BO2k8Nz47aTw4Pjs%2BO2w8dDxwPHA8bDxUZXh0Oz47bDzmpoLnjofkuI7mlbDnkIbnu5%2ForqE7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPDM7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOW%2FheS%2Fruivvjs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8Jm5ic3BcOzs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w85pWw5a2m5a2m6ZmiOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzlv4Xkv67or747Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOW8oOelluWujzs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w85ZGo5LiA56ysMSwy6IqCe%2BesrDQtMTXlkah9XDvlkajkuInnrKw2LDfoioJ756ysNC0xNeWRqH07Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOiJr%2BS5oTItQTIwNFw76Imv5LmhMi1BMjA0Oz4%2BOz47Oz47Pj47dDw7bDxpPDA%2BO2k8MT47aTwyPjtpPDM%2BO2k8ND47aTw1PjtpPDY%2BO2k8Nz47aTw4Pjs%2BO2w8dDxwPHA8bDxUZXh0Oz47bDzlpKflrabnlJ%2FogYzkuJrnlJ%2Fmtq%2Fop4TliJI7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPDI7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOW%2FheS%2Fruivvjs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8Jm5ic3BcOzs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w85py655S15a2m6ZmiOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzlv4Xkv67or747Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOaWueiVvjs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8Jm5ic3BcOzs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8Jm5ic3BcOzs%2BPjs%2BOzs%2BOz4%2BO3Q8O2w8aTwwPjtpPDE%2BO2k8Mj47aTwzPjtpPDQ%2BO2k8NT47aTw2PjtpPDc%2BO2k8OD47PjtsPHQ8cDxwPGw8VGV4dDs%2BO2w85aSn5a2m54mp55CG4oWhOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDw0Oz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzlv4Xkv67or747Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPCZuYnNwXDs7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOeJqeeQhuWtpumZojs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w85b%2BF5L%2Bu6K%2B%2BOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzpgqLnh5XpnJ47Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOWRqOS6jOesrDMsNOiKgnvnrKw0LTE55ZGofVw75ZGo5Zub56ysMyw06IqCe%2BesrDQtMTnlkah9Oz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzoia%2FkuaExLTIwM1w76Imv5LmhMS0yMDM7Pj47Pjs7Pjs%2BPjt0PDtsPGk8MD47aTwxPjtpPDI%2BO2k8Mz47aTw0PjtpPDU%2BO2k8Nj47aTw3PjtpPDg%2BOz47bDx0PHA8cDxsPFRleHQ7PjtsPOavm%2BazveS4nOaAneaDs%2BS4juS4reWbveeJueiJsuekvuS8muS4u%2BS5ieeQhuiuuuS9k%2Bezu%2Bamguiuujs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8NDs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w85b%2BF5L%2Bu6K%2B%2BOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDwmbmJzcFw7Oz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzkurrmlofkuI7npL7kvJrnp5HlrablrabpmaI7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOW%2FheS%2Fruivvjs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w85byg6Zu3Oz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzlkajkuInnrKwxMSwxMiwxM%2BiKgnvnrKw0LTE55ZGofTs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w86Imv5LmhMS0xMDM7Pj47Pjs7Pjs%2BPjt0PDtsPGk8MD47aTwxPjtpPDI%2BO2k8Mz47aTw0PjtpPDU%2BO2k8Nj47aTw3PjtpPDg%2BOz47bDx0PHA8cDxsPFRleHQ7PjtsPOaVsOWtl%2BWbvuWDj%2BWkhOeQhuaKgOacr%2BS4juWunui3tTs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8My4wOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzmoKHlhazpgInor747Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOWunumqjOmAieS%2Fruivvjs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w85L%2Bh5oGv5LiO55S15a2Q5a2m6ZmiOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzmoKHlhazpgInor747Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOa9mOS4veaVjy%2Fpq5jlubM7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOWRqOS4gOesrDExLDEyLDEz6IqCe%2BesrDQtMTnlkah9Oz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzoia%2FkuaExLTEwODs%2BPjs%2BOzs%2BOz4%2BO3Q8O2w8aTwwPjtpPDE%2BO2k8Mj47aTwzPjtpPDQ%2BO2k8NT47aTw2PjtpPDc%2BO2k8OD47PjtsPHQ8cDxwPGw8VGV4dDs%2BO2w86Iux6K%2Bt5Y%2Bj6K%2Bt77yI5aSW5pWZ77yJOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDwyOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzmoKHlhazpgInor747Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOS4k%2BmhueiLseivrTs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w85aSW5Zu96K%2Bt5a2m6ZmiOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzmoKHlhazpgInor747Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPERhbiBSb2xmZTs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w85ZGo5LiA56ysMyw06IqCe%2BesrDQtMTnlkah9Oz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzoia%2FkuaEyLUIyMDU7Pj47Pjs7Pjs%2BPjt0PDtsPGk8MD47aTwxPjtpPDI%2BO2k8Mz47aTw0PjtpPDU%2BO2k8Nj47aTw3PjtpPDg%2BOz47bDx0PHA8cDxsPFRleHQ7PjtsPOeUteWtkOWunuS5oDs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8MS4wOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzlv4Xkv67or747Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPCZuYnNwXDs7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOacuueUteWtpumZojs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w85b%2BF5L%2Bu6K%2B%2BOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzmnY7mmZPls7A7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPCZuYnNwXDs7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPCZuYnNwXDs7Pj47Pjs7Pjs%2BPjt0PDtsPGk8MD47aTwxPjtpPDI%2BO2k8Mz47aTw0PjtpPDU%2BO2k8Nj47aTw3PjtpPDg%2BOz47bDx0PHA8cDxsPFRleHQ7PjtsPOeJqeeQhuWunumqjELvvIjihaHvvIk7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPDI7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOW%2FheS%2Fruivvjs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8Jm5ic3BcOzs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w854mp55CG5a2m6ZmiOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzlv4Xkv67or747Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOWGr%2BeSkDs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w85ZGo5LqM56ysMTEsMTIsMTPoioJ756ysNC0xNeWRqH07Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOiJr%2BS5oeeJqeeQhuWunumqjOS4reW%2Fg%2BalvDs%2BPjs%2BOzs%2BOz4%2BO3Q8O2w8aTwwPjtpPDE%2BO2k8Mj47aTwzPjtpPDQ%2BO2k8NT47aTw2PjtpPDc%2BO2k8OD47PjtsPHQ8cDxwPGw8VGV4dDs%2BO2w85L2T6IKyL%2Be9keeQgyjnlLflpbMpOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDwxOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzlv4Xkv67or747Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPCZuYnNwXDs7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOS9k%2BiCsumDqDs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w85b%2BF5L%2Bu6K%2B%2BOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzmnY7kuqznlJ87Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOWRqOS6lOesrDMsNOiKgnvnrKw0LTE55ZGofTs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8572R55CD5Zy6Oz4%2BOz47Oz47Pj47dDw7bDxpPDA%2BO2k8MT47aTwyPjtpPDM%2BO2k8ND47aTw1PjtpPDY%2BO2k8Nz47aTw4Pjs%2BO2w8dDxwPHA8bDxUZXh0Oz47bDzmlofnjK7mo4DntKI7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPDE7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOW%2FheS%2Fruivvjs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8Jm5ic3BcOzs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w85Zu%2B5Lmm6aaGOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzlv4Xkv67or747Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOW6t%2BahguiLsTs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8Jm5ic3BcOzs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8Jm5ic3BcOzs%2BPjs%2BOzs%2BOz4%2BOz4%2BOz4%2BO3Q8QDA8cDxwPGw8UGFnZUNvdW50O18hSXRlbUNvdW50O18hRGF0YVNvdXJjZUl0ZW1Db3VudDtEYXRhS2V5czs%2BO2w8aTwxPjtpPDc%2BO2k8Nz47bDw%2BOz4%2BOz47Ozs7Ozs7Ozs7PjtsPGk8MD47PjtsPHQ8O2w8aTwxPjtpPDI%2BO2k8Mz47aTw0PjtpPDU%2BO2k8Nj47aTw3Pjs%2BO2w8dDw7bDxpPDA%2BO2k8MT47aTwyPjtpPDM%2BO2k8ND47aTw1PjtpPDY%2BO2k8Nz47PjtsPHQ8cDxwPGw8VGV4dDs%2BO2w8dDAyOTczOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDx0MDI5NzM7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOihpTAwNTE7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPCgyMDE1LTIwMTYtMSktTUVDMDEwNzUtdDAyOTczLTE7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOeQhuiuuuWKm%2BWtpkI7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOeZveiLpemYsyjlrofoiKrlrabpmaIpJm5ic3BcOzs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w855m96Iul6ZizKOWuh%2BiIquWtpumZoinlkagy56ysMTHoioLov57nu60z6IqCe%2BesrDE4LTE45ZGo5Y%2BM5ZGofS%2Foia%2FkuaExLTIwNjs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8MjAxNS0xMi0yNC0wOS0xNTs%2BPjs%2BOzs%2BOz4%2BO3Q8O2w8aTwwPjtpPDE%2BO2k8Mj47aTwzPjtpPDQ%2BO2k8NT47aTw2PjtpPDc%2BOz47bDx0PHA8cDxsPFRleHQ7PjtsPHQwMjk3Mzs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8dDAyOTczOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzooaUwMDUyOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDwoMjAxNS0yMDE2LTEpLU1FQzAxMDc1LXQwMjk3My0xOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDznkIborrrlipvlraZCOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDznmb3oi6XpmLMo5a6H6Iiq5a2m6ZmiKSZuYnNwXDs7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOeZveiLpemYsyjlrofoiKrlrabpmaIp5ZGoNOesrDEx6IqC6L%2Be57utM%2BiKgnvnrKwxOC0xOOWRqOWPjOWRqH0v6Imv5LmhMS0yMDY7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPDIwMTUtMTItMjQtMDktMTc7Pj47Pjs7Pjs%2BPjt0PDtsPGk8MD47aTwxPjtpPDI%2BO2k8Mz47aTw0PjtpPDU%2BO2k8Nj47aTw3Pjs%2BO2w8dDxwPHA8bDxUZXh0Oz47bDx0MDI5NzM7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPHQwMjk3Mzs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w86KGlMDA1Mzs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8KDIwMTUtMjAxNi0xKS1NRUMwMTA3NS10MDI5NzMtMTs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w855CG6K665Yqb5a2mQjs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w855m96Iul6ZizKOWuh%2BiIquWtpumZoikmbmJzcFw7Oz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDznmb3oi6XpmLMo5a6H6Iiq5a2m6ZmiKeWRqDLnrKwxMeiKgui%2Fnue7rTPoioJ756ysMTktMTnlkajljZXlkah9L%2BiJr%2BS5oTEtMjA2Oz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDwyMDE1LTEyLTI0LTA5LTE4Oz4%2BOz47Oz47Pj47dDw7bDxpPDA%2BO2k8MT47aTwyPjtpPDM%2BO2k8ND47aTw1PjtpPDY%2BO2k8Nz47PjtsPHQ8cDxwPGw8VGV4dDs%2BO2w8dDAyOTczOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDx0MDI5NzM7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOihpTAwNTQ7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPCgyMDE1LTIwMTYtMSktTUVDMDEwNzUtdDAyOTczLTE7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOeQhuiuuuWKm%2BWtpkI7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOeZveiLpemYsyjlrofoiKrlrabpmaIpJm5ic3BcOzs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w855m96Iul6ZizKOWuh%2BiIquWtpumZoinlkag056ysMTHoioLov57nu60z6IqCe%2BesrDE5LTE55ZGo5Y2V5ZGofS%2Foia%2FkuaExLTIwNjs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8MjAxNS0xMi0yNC0wOS0xODs%2BPjs%2BOzs%2BOz4%2BO3Q8O2w8aTwwPjtpPDE%2BO2k8Mj47aTwzPjtpPDQ%2BO2k8NT47aTw2PjtpPDc%2BOz47bDx0PHA8cDxsPFRleHQ7PjtsPHQwMzkzOTs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8dDAzOTM5Oz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzooaUwMDU3Oz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDwoMjAxNS0yMDE2LTEpLUVMQzA1MDA5LXQwMzkzOS0xOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDznlLXot6%2FliIbmnpDln7rnoYBBOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzpq5jmtKrmsJEo5L%2Bh5oGv5LiO55S15a2Q5a2m6ZmiKSZuYnNwXDs7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOmrmOa0quawkSjkv6Hmga%2FkuI7nlLXlrZDlrabpmaIp5ZGoMeesrDjoioLov57nu60y6IqCe%2BesrDE4LTE45ZGofS%2Foia%2FkuaEyLUExMDU7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPDIwMTUtMTItMjQtMTAtMDI7Pj47Pjs7Pjs%2BPjt0PDtsPGk8MD47aTwxPjtpPDI%2BO2k8Mz47aTw0PjtpPDU%2BO2k8Nj47aTw3Pjs%2BO2w8dDxwPHA8bDxUZXh0Oz47bDx0MDM5Mzk7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPHQwMzkzOTs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w86KGlMDA1ODs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8KDIwMTUtMjAxNi0xKS1FTEMwNTAwOS10MDM5MzktMTs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w855S16Lev5YiG5p6Q5Z%2B656GAQTs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w86auY5rSq5rCRKOS%2FoeaBr%2BS4jueUteWtkOWtpumZoikmbmJzcFw7Oz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDzpq5jmtKrmsJEo5L%2Bh5oGv5LiO55S15a2Q5a2m6ZmiKeWRqDTnrKw46IqC6L%2Be57utMuiKgnvnrKwxOC0xOOWRqH0v6Imv5LmhMi1BNDAzOz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDwyMDE1LTEyLTI0LTEwLTAyOz4%2BOz47Oz47Pj47dDw7bDxpPDA%2BO2k8MT47aTwyPjtpPDM%2BO2k8ND47aTw1PjtpPDY%2BO2k8Nz47PjtsPHQ8cDxwPGw8VGV4dDs%2BO2w8dDAzOTM5Oz4%2BOz47Oz47dDxwPHA8bDxUZXh0Oz47bDx0MDM5Mzk7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOihpTAwNjQ7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPCgyMDE1LTIwMTYtMSktRUxDMDUwMDktdDAzOTM5LTE7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOeUtei3r%2BWIhuaekOWfuuehgEE7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOmrmOa0quawkSjkv6Hmga%2FkuI7nlLXlrZDlrabpmaIpJm5ic3BcOzs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w86auY5rSq5rCRKOS%2FoeaBr%2BS4jueUteWtkOWtpumZoinlkagx56ysOOiKgui%2Fnue7rTPoioJ756ysMTktMTnlkah9L%2BiJr%2BS5oTItQTMwNTs%2BPjs%2BOzs%2BO3Q8cDxwPGw8VGV4dDs%2BO2w8MjAxNi0wMS0wNS0wOS01MTs%2BPjs%2BOzs%2BOz4%2BOz4%2BOz4%2BOz4%2BOz4%2BOz6bLfDAoBmdcqTd9a%2FI%2FOIQLxoCwQ%3D%3D';
 
-	function __construct($username=null, $password=null) {
-		$this->username = $username;
-		$this->password = $password;
+	function __construct($username=null, $password=null){
+		$this->setLoginInfo($username, $password);
+
+		// Init curl handle
 		$this->ch = curl_init();
 		curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($this->ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 5.1; rv:1.7.3) Gecko/20041001 Firefox/0.10.1 bPlanner" );
-		// curl_setopt($this->ch, CURLOPT_COOKIEJAR, $cookie );
 		curl_setopt($this->ch, CURLOPT_FOLLOWLOCATION, true );
 		curl_setopt($this->ch, CURLOPT_ENCODING, "" );
 		curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, true );
@@ -28,6 +28,13 @@ class schoolBIT{
 		curl_setopt($this->ch, CURLOPT_CONNECTTIMEOUT, 3 );
 		curl_setopt($this->ch, CURLOPT_TIMEOUT, 5 );
 		curl_setopt($this->ch, CURLOPT_MAXREDIRS, 3 );
+		/*
+		It seems that by copying $ch instance, cookies can be preserved in the page session level,
+		thus there is no need to save cookies to file.
+		*/ 
+		// curl_setopt($this->ch, CURLOPT_COOKIEJAR, $cookie);
+		// curl_setopt($this->ch, CURLOPT_COOKIEFILE, $cookie);
+
 		// curl_setopt($this->ch, CURLOPT_PROXY, 'http://127.0.0.1:8888');
 	}
 
@@ -40,6 +47,7 @@ class schoolBIT{
 		if($password) $this->password = $password;
 	}
 
+	// @param $key 0: return 1=>Mon; 1: return Mon=>1
 	static function getWeekLangArr($key = 0){
 		return $key?array_flip(self::$weekLangArr):self::$weekLangArr;
 	}
@@ -49,6 +57,7 @@ class schoolBIT{
 		curl_setopt($this->ch, CURLOPT_REFERER, $path.'/xs_main.aspx');
 	}
 
+	// Get new curl handle object with default settings
 	private function getCH(){
 		return curl_copy_handle($this->ch);
 	}
@@ -93,6 +102,12 @@ class schoolBIT{
 		}
 	}
 
+	/*
+	 * @return Array [Array $info, Array $table1, Array $table2]
+	 *         - $info basic info (term, major...)
+	 *         - $table1 main lesson schedule
+	 *         - $table2 lesson schedule changes
+	 */
 	function getSchedulePage($year=null, $term=null){
 		$ch = $this->getCH();
 		curl_setopt($ch, CURLOPT_URL, $this->sessionPath."/xskbcx.aspx?xh=".$this->username."&xm=&gnmkdm=N121603");
@@ -176,6 +191,7 @@ class schoolBIT{
 		}
 	}
 
+	// @return Array
 	function parseScheduleTableMain(DOMElement $xD){
 		$return = [];
 		foreach($xD->getElementsByTagName('tr') as $i=>$tr){
@@ -243,6 +259,8 @@ class schoolBIT{
 		return $return;
 	}
 
+	// @param $cInfo strings being parsed
+	// @return LessonBIT
 	function _parseScheduleTableChangesLessonText($cInfo, $class = 'LessonBIT'){
 		if(preg_match("/^(.+)\((.+)\)周(\d)第(\d+)节连续(\d)节.*?(\/(.*))?$/u", $cInfo, $cInfoMatch)){
 			$l = new $class(array(
@@ -282,6 +300,8 @@ class schoolBIT{
 		return $l;
 	}
 
+	// @param $forceChanges 1: Don't redirect $new of LessonBITDeletion to mergeDeletedLesson
+	// @return Array
 	function mergeChangedLesson(Array $orig, $new, $forceChanges = 0){
 		if($new instanceof LessonBITDeletion && !$forceChanges){
 			return $this->mergeDeletedLesson($orig, $new);
@@ -318,6 +338,7 @@ class schoolBIT{
 		}
 	}
 
+	// @return Array
 	function mergeDeletedLesson(Array $orig, $l = null){
 		if(!$l) return $this->mergeDeletedLessonOld($orig);
 
@@ -362,6 +383,7 @@ class schoolBIT{
 		return $orig;
 	}
 
+	// @return Array
 	function mergeDeletedLessonOld(Array $orig){
 		foreach($orig as $i=>$l){
 			if($l instanceof LessonBITDeletion){
@@ -405,6 +427,7 @@ class schoolBIT{
 		return $orig;
 	}
 
+	// @return Array
 	function parseScheduleTableChanges(DOMElement $xD){
 		$returnl = array();
 		$returnd = array();
@@ -450,6 +473,7 @@ class schoolBIT{
 		return array_interlace($returnl, $returnd);
 	}
 
+	// @return void
 	function changesFillInfoFromMain($t2, $t1){
 		foreach ($t2 as $v) {
 			if($v instanceof LessonBITDeletion){
@@ -463,12 +487,15 @@ class schoolBIT{
 			}
 		}
 	}
+
+	// @return String
 	function getSchoolCalendarFetch($year, $term){
 		if(isset($this->calendarCache[$year.'-'.$term][0])){
 			$result = $this->calendarCache[$year.'-'.$term][0];
 		}else{
 			$ch = $this->getCH();
 			curl_setopt($ch, CURLOPT_URL, 'http://weixin.info.bit.edu.cn/schoolCalendar/wechatQuery?code='.$year.'-'.$term);
+			curl_setopt($ch, CURLOPT_REFERER, '');
 			$result = curl_exec($ch);
 			$this->calendarCache[$year.'-'.$term][0] = $result;
 		}
@@ -476,6 +503,7 @@ class schoolBIT{
 		return $result;
 	}
 
+	// @return Array [$year, $month, $day]
 	function getSchoolCalendar2Date($year, $term, $week, $weekday){
 		if(isset($this->calendarCache[$year.'-'.$term][1])){
 			$result = $this->calendarCache[$year.'-'.$term][1];
@@ -526,6 +554,11 @@ class schoolBIT{
 		return array($year, $month, $day);
 	}
 
+	/*
+	 * @param $year '2014-2015'
+	 * @param $term Number 1/2
+	 * @return Number
+	 */
 	function getCurrentWeekFetch($year, $term){
 		$result = $this->getSchoolCalendarFetch($year, $term);
 		
@@ -538,6 +571,7 @@ class schoolBIT{
 		}
 	}
 
+	// @return Number
 	function getCurrentWeek(){
 		$year = date('Y');
 		$month = date('m');
@@ -559,7 +593,6 @@ class schoolBIT{
 			$attempt = array($this->getCurrentWeekFetch(($year-1).'-'.$year, 2), ($year-1).'-'.$year, 2);
 		}
 		return $attempt;
-
 	}
 }
 
@@ -676,6 +709,11 @@ Class LessonScheduleBIT{
 		$weekday = schoolBIT::getWeekLangArr();
 		return ($weekday[$this->day]?('周'.$weekday[$this->day]):'').'第'.$this->startTime.'-'.($this->startTime+$this->durationTime-1).'节';
 	}
+	/*
+	 * @param $returnArray
+	 *        - 0: @return String
+	 *        - 1: @return Array
+	 */
 	function getWeekText($returnArray = 0){
 		$start = 0;
 		$duration = 0;

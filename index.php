@@ -114,10 +114,10 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'ical'){
 	foreach ($t2 as $v) {
 	  // Merge itself
 	  if($v instanceof LessonBITDeletion){
-	    $t2MergedDeletion = $school->mergeChangedLesson($t2MergedDeletion, $v, 1);
+		$t2MergedDeletion = $school->mergeChangedLesson($t2MergedDeletion, $v, 1);
 	  }
 	  /*else{
-	    $t2Merged = $school->mergeChangedLesson($t2Merged, $v);
+		$t2Merged = $school->mergeChangedLesson($t2Merged, $v);
 	  }*/
 
 	  // Merge changes
@@ -136,24 +136,24 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'ical'){
 	foreach($t1 as $o){
 	  $odata = array('name'=>$o->name, 'credit'=>$o->credit, 'tutor'=>$o->tutor, 'schedule'=>$o->schedule);
 	  if(count($o->schedule)){
-	    foreach($o->schedule as $os){
-	    	$startTimeTrans = array([],['8','00'],['8','50'],['9','50'],['10','40'],['11','30'],['13','20'],['14','10'],['15','10'],['16','00'],['16','50'],['18','30'],['19','20'],['20','10']);
-	    	$endTimeTrans = array([],['8','45'],['9','35'],['10','35'],['11','25'],['12','15'],['14','05'],['14','55'],['15','55'],['16','45'],['17','35'],['19','15'],['20','05'],['20','55']);
-	    	$dateArr = $school->getSchoolCalendar2Date($tables[0]['year'], $tables[0]['term'], $os->week[0], $os->day);
-	    	
-	    	$vevent = $v->newComponent( "vevent" );                    // create an event calendar component
+		foreach($o->schedule as $os){
+			$startTimeTrans = array([],['8','00'],['8','50'],['9','50'],['10','40'],['11','30'],['13','20'],['14','10'],['15','10'],['16','00'],['16','50'],['18','30'],['19','20'],['20','10']);
+			$endTimeTrans = array([],['8','45'],['9','35'],['10','35'],['11','25'],['12','15'],['14','05'],['14','55'],['15','55'],['16','45'],['17','35'],['19','15'],['20','05'],['20','55']);
+			$dateArr = $school->getSchoolCalendar2Date($tables[0]['year'], $tables[0]['term'], $os->week[0], $os->day);
+			
+			$vevent = $v->newComponent( "vevent" );                    // create an event calendar component
 			$vevent->setProperty( "dtstart", array( "year"  => $dateArr[0]
-			                                      , "month" => $dateArr[1]
-			                                      , "day"   => $dateArr[2]
-			                                      , "hour"  => $startTimeTrans[$os->startTime][0]
-			                                      , "min"   => $startTimeTrans[$os->startTime][1]
-			                                      , "sec"   => 0 ));
+												  , "month" => $dateArr[1]
+												  , "day"   => $dateArr[2]
+												  , "hour"  => $startTimeTrans[$os->startTime][0]
+												  , "min"   => $startTimeTrans[$os->startTime][1]
+												  , "sec"   => 0 ));
 			$vevent->setProperty( "dtend",   array( "year"  => $dateArr[0]
-			                                      , "month" => $dateArr[1]
-			                                      , "day"   => $dateArr[2]
-			                                      , "hour"  => $endTimeTrans[$os->startTime][0]
-			                                      , "min"   => $endTimeTrans[$os->startTime+$os->durationTime-1][1]
-			                                      , "sec"   => 0 ));
+												  , "month" => $dateArr[1]
+												  , "day"   => $dateArr[2]
+												  , "hour"  => $endTimeTrans[$os->startTime][0]
+												  , "min"   => $endTimeTrans[$os->startTime+$os->durationTime-1][1]
+												  , "sec"   => 0 ));
 			$vevent->setProperty( "LOCATION", $os->location );       // property name - case independent
 			$vevent->setProperty( "summary", $o->name );
 			$vevent->setProperty( "description", $o->tutor );
@@ -176,7 +176,7 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'ical'){
 			}
 
 			//$schedArr[$os->day][$os->startTime][] = $os;
-	    }
+		}
 	  }
 	}
 	
