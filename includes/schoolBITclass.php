@@ -19,7 +19,7 @@ class schoolBIT{
 		// Init curl handle
 		$this->ch = curl_init();
 		curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($this->ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 5.1; rv:1.7.3) Gecko/20041001 Firefox/0.10.1 bPlanner" );
+		curl_setopt($this->ch, CURLOPT_USERAGENT, "Mozilla/5.0 (rv:43.0) Gecko/20100101 Firefox/43.0 bPlanner@phy25.com" );
 		curl_setopt($this->ch, CURLOPT_FOLLOWLOCATION, true );
 		curl_setopt($this->ch, CURLOPT_ENCODING, "" );
 		curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, true );
@@ -86,6 +86,7 @@ class schoolBIT{
 			$this->setSessionPath(pathinfo($url, PATHINFO_DIRNAME));
 			return true;
 		}else{
+			$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 			if(preg_match("/alert\(\'(.+)'\);/", $result, $matches)){
 				$this->last_error = iconv('GB2312', 'UTF-8//IGNORE', $matches[1]);
 			}else if(strpos($result, iconv('UTF-8', 'GB2312//IGNORE', '<input type="submit" name="Button1" value=" 登 录 "'))){
@@ -93,10 +94,13 @@ class schoolBIT{
 			}else if(curl_errno($ch) == 28){
 				$this->last_error = 'Itimeout_error';
 				return false;
+			}else if($httpcode && $httpcode != 200){
+				$this->last_error = 'Error '.$httpcode;
+				return false;
 			}else{
 				$this->last_error = 'Iparse_error';
-				var_dump($result);
-				var_dump(curl_error($ch));
+				//var_dump($result);
+				//var_dump(curl_error($ch));
 			}
 			return false;
 		}
@@ -117,6 +121,7 @@ class schoolBIT{
 		}
 		$html = curl_exec($ch);
 		$url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
+		$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
 		if(strpos($url, 'xskbcx.aspx')){
 			if(preg_match("/alert\(\'(.+)'\);/", $html, $alertMatches)){
@@ -175,17 +180,20 @@ class schoolBIT{
 			}else if(curl_errno($ch) == 28){
 				$this->last_error = 'Itimeout_error';
 				return false;
+			}else if($httpcode && $httpcode != 200){
+				$this->last_error = 'Error '.$httpcode;
+				return false;
 			}else if($html === false){
-				var_dump(curl_errno($ch), curl_error($ch));
+				//var_dump(curl_errno($ch), curl_error($ch));
 				$this->last_error = 'Iservice_error';
 				return false;
 			}else{
-				var_dump($html);
+				//var_dump($html);
 				$this->last_error = 'Iparse_error';
 				return false;
 			}
 		}else{
-			var_dump($url);
+			//var_dump($url);
 			$this->last_error = 'Iservice_error';
 			return false;
 		}
@@ -352,7 +360,6 @@ class schoolBIT{
 					foreach($l->schedule as $ils=>$ls){
 						$lsHash = $ls->getHashPerWeek();
 						foreach($lc->schedule as $ilcs=>$lcs){
-							if($l->changesID == '调0133') var_dump($lsHash, $lcs->originalHashPerWeek, $lcs->getWeekText());
 							if($lsHash == $lcs->originalHashPerWeek){//getHashPerWeek()
 								// Use original hash to cope with system's output
 								// Delete week
