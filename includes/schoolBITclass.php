@@ -10,12 +10,10 @@ class schoolBIT{
 	public $last_error = '';
 	protected $calendarCache = array();
 	protected static $weekLangArr = array('','一','二','三','四','五','六','日');
-	public static $schedulePagePostViewState;
+	protected $schedulePagePostViewState = '';
 
 	function __construct($username=null, $password=null){
 		$this->setLoginInfo($username, $password);
-
-		include('schoolBITclassConst.php');
 		
 		// Init curl handle
 		$this->ch = curl_init();
@@ -32,9 +30,10 @@ class schoolBIT{
 		/*
 		It seems that by copying $ch instance, cookies can be preserved in the page session level,
 		thus there is no need to save cookies to file.
-		*/ 
-		// curl_setopt($this->ch, CURLOPT_COOKIEJAR, $cookie);
-		// curl_setopt($this->ch, CURLOPT_COOKIEFILE, $cookie);
+		*/
+		// $temp = tempnam(sys_get_temp_dir(), 'jwc');
+		// curl_setopt($this->ch, CURLOPT_COOKIEJAR, $temp);
+		// curl_setopt($this->ch, CURLOPT_COOKIEFILE, $temp);
 
 		// curl_setopt($this->ch, CURLOPT_PROXY, 'http://127.0.0.1:8888');
 	}
@@ -107,18 +106,16 @@ class schoolBIT{
 		}
 	}
 
-	/*
-	 * @return Array [Array $info, Array $table1, Array $table2]
-	 *         - $info basic info (term, major...)
-	 *         - $table1 main lesson schedule
-	 *         - $table2 lesson schedule changes
-	 */
-	function getSchedulePage($year=null, $term=null){
+	function getSchedulePageFetch($year=null, $term=null){
 		$ch = $this->getCH();
 		curl_setopt($ch, CURLOPT_URL, $this->sessionPath."/xskbcx.aspx?xh=".$this->username."&xm=&gnmkdm=N121603");
 		if($year && $term){
+			if(!$this->schedulePagePostViewState){
+				$this->last_error = 'Ineeds_viewstate';
+				return false;
+			}
 			curl_setopt($ch, CURLOPT_POST, true);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, self::$schedulePagePostViewState."&xnd=".$year."&xqd=".$term);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, '__EVENTTARGET=xqd&__EVENTARGUMENT=&__VIEWSTATE='.$this->schedulePagePostViewState."&xnd=".$year."&xqd=".$term);
 		}
 		$html = curl_exec($ch);
 		$url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
@@ -129,73 +126,107 @@ class schoolBIT{
 				$this->last_error = iconv('GB2312', 'UTF-8//IGNORE', $alertMatches[1]);
 				return false;
 			}
-
-			$doc = new DOMDocument();
-			@$doc->loadHTML($html);
-
-			$table1 = $doc->getElementById('dgrdKb');
-			$table2 = $doc->getElementById('DBGrid');
-
-			if($table1 && $table2 && $table1->tagName == 'table' && $table2->tagName == 'table'){
-				// Get additional info
-				$info = array();
-				$xnd = $doc->getElementById('xnd');
-				if($xnd){
-					$xnd = $xnd->getElementsByTagName('option');
-					foreach($xnd as $i=>$option){
-						if($option->getAttribute('selected') === 'selected'){
-							$info['year'] = $option->nodeValue;
-						}
-					}
-				}
-				$xnd = $doc->getElementById('xqd');
-				if($xnd){
-					$xnd = $xnd->getElementsByTagName('option');
-					foreach($xnd as $i=>$option){
-						if($option->getAttribute('selected') === 'selected'){
-							$info['term'] = $option->nodeValue;
-						}
-					}
-				}
-				$label = $doc->getElementById('Label5');
-				if($label){
-					$info['stuno'] = preg_replace("/^.+?：/", '', $label->nodeValue);
-				}
-				$label = $doc->getElementById('Label6');
-				if($label){
-					$info['stuname'] = preg_replace("/^.+?：/", '', $label->nodeValue);
-				}
-				$label = $doc->getElementById('Label7');
-				if($label){
-					$info['department'] = preg_replace("/^.+?：/", '', $label->nodeValue);
-				}
-				$label = $doc->getElementById('Label8');
-				if($label){
-					$info['major'] = preg_replace("/^.+?：/", '', $label->nodeValue);
-				}
-				$label = $doc->getElementById('Label9');
-				if($label){
-					$info['class'] = preg_replace("/^.+?：/", '', $label->nodeValue);
-				}
-				return array($info, $table1, $table2);
-			}else if(curl_errno($ch) == 28){
+			if(curl_errno($ch) == 28){
 				$this->last_error = 'Itimeout_error';
 				return false;
-			}else if($httpcode && $httpcode != 200){
+			}
+			if($httpcode && $httpcode != 200){
 				$this->last_error = 'Error '.$httpcode;
 				return false;
-			}else if($html === false){
+			}
+			if($html === false){
 				//var_dump(curl_errno($ch), curl_error($ch));
 				$this->last_error = 'Iservice_error';
 				return false;
-			}else{
-				//var_dump($html);
-				$this->last_error = 'Iparse_error';
-				return false;
 			}
+			// else
+			return array($html, $url, $httpcode);
 		}else{
 			//var_dump($url);
 			$this->last_error = 'Iservice_error';
+			return false;
+		}
+	}
+
+	/*
+	 * @return Array [Array $info, Array $table1, Array $table2]
+	 *         - $info basic info (term, major...)
+	 *         - $table1 main lesson schedule
+	 *         - $table2 lesson schedule changes
+	 */
+	function getSchedulePage($year=null, $term=null){
+		if($year && $term && !$this->schedulePagePostViewState){
+			$r = $this->getSchedulePageFetch();
+			if(!$r){
+				return false;
+			}else{
+				if(preg_match('/<input type="hidden" name="__VIEWSTATE" value="(.+?)" \/>/', $r[0], $vs_matches)){
+					$this->schedulePagePostViewState = urlencode($vs_matches[1]);
+				}else{
+					$this->last_error = 'Iparse_error';
+					return false;
+				}
+			}
+		}
+
+		$r = $this->getSchedulePageFetch($year, $term);
+		if(!$r){
+			return false;
+		}
+		// else
+		list($html, $url, $httpcode) = $r;	
+
+		$doc = new DOMDocument();
+		@$doc->loadHTML($html);
+
+		$table1 = $doc->getElementById('dgrdKb');
+		$table2 = $doc->getElementById('DBGrid');
+
+		if($table1 && $table2 && $table1->tagName == 'table' && $table2->tagName == 'table'){
+			// Get additional info
+			$info = array();
+			$xnd = $doc->getElementById('xnd');
+			if($xnd){
+				$xnd = $xnd->getElementsByTagName('option');
+				foreach($xnd as $i=>$option){
+					if($option->getAttribute('selected') === 'selected'){
+						$info['year'] = $option->nodeValue;
+					}
+				}
+			}
+			$xnd = $doc->getElementById('xqd');
+			if($xnd){
+				$xnd = $xnd->getElementsByTagName('option');
+				foreach($xnd as $i=>$option){
+					if($option->getAttribute('selected') === 'selected'){
+						$info['term'] = $option->nodeValue;
+					}
+				}
+			}
+			$label = $doc->getElementById('Label5');
+			if($label){
+				$info['stuno'] = preg_replace("/^.+?：/", '', $label->nodeValue);
+			}
+			$label = $doc->getElementById('Label6');
+			if($label){
+				$info['stuname'] = preg_replace("/^.+?：/", '', $label->nodeValue);
+			}
+			$label = $doc->getElementById('Label7');
+			if($label){
+				$info['department'] = preg_replace("/^.+?：/", '', $label->nodeValue);
+			}
+			$label = $doc->getElementById('Label8');
+			if($label){
+				$info['major'] = preg_replace("/^.+?：/", '', $label->nodeValue);
+			}
+			$label = $doc->getElementById('Label9');
+			if($label){
+				$info['class'] = preg_replace("/^.+?：/", '', $label->nodeValue);
+			}
+			return array($info, $table1, $table2);
+		}else{
+			$this->last_error = 'Iparse_error';
+			//var_dump($html);
 			return false;
 		}
 	}
