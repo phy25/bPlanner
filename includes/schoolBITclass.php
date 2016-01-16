@@ -140,7 +140,9 @@ class schoolBIT{
 				return false;
 			}
 			// else
-			return array($html, $url, $httpcode);
+			$doc = new DOMDocument();
+			@$doc->loadHTML($html);
+			return array($html, $url, $httpcode, $doc);
 		}else{
 			//var_dump($url);
 			$this->last_error = 'Iservice_error';
@@ -162,22 +164,44 @@ class schoolBIT{
 			}else{
 				if(preg_match('/<input type="hidden" name="__VIEWSTATE" value="(.+?)" \/>/', $r[0], $vs_matches)){
 					$this->schedulePagePostViewState = urlencode($vs_matches[1]);
+					$info = array();
+					$xnd = $r[3]->getElementById('xnd');
+					if($xnd){
+						$xnd = $xnd->getElementsByTagName('option');
+						foreach($xnd as $i=>$option){
+							if($option->getAttribute('selected') === 'selected'){
+								$info['year'] = $option->nodeValue;
+							}
+						}
+					}
+					$xnd = $r[3]->getElementById('xqd');
+					if($xnd){
+						$xnd = $xnd->getElementsByTagName('option');
+						foreach($xnd as $i=>$option){
+							if($option->getAttribute('selected') === 'selected'){
+								$info['term'] = $option->nodeValue;
+							}
+						}
+					}
+					if($info['year'] == $year && $info['term'] == $term){
+						// Don't do duplicate request
+					}else{
+						$r = $this->getSchedulePageFetch($year, $term);
+					}
 				}else{
 					$this->last_error = 'Iparse_error';
 					return false;
 				}
 			}
+		}else{
+			$r = $this->getSchedulePageFetch($year, $term);
 		}
-
-		$r = $this->getSchedulePageFetch($year, $term);
+		
 		if(!$r){
 			return false;
 		}
 		// else
-		list($html, $url, $httpcode) = $r;	
-
-		$doc = new DOMDocument();
-		@$doc->loadHTML($html);
+		list($html, $url, $httpcode, $doc) = $r;
 
 		$table1 = $doc->getElementById('dgrdKb');
 		$table2 = $doc->getElementById('DBGrid');
