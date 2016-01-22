@@ -11,6 +11,7 @@ class schoolBIT{
 	protected $calendarCache = array();
 	protected static $weekLangArr = array('','一','二','三','四','五','六','日');
 	protected $schedulePagePostViewState = '';
+	protected $gradePagePostViewState = '';
 
 	function __construct($username=null, $password=null){
 		$this->setLoginInfo($username, $password);
@@ -25,7 +26,7 @@ class schoolBIT{
 		curl_setopt($this->ch, CURLOPT_AUTOREFERER, true );
 		curl_setopt($this->ch, CURLOPT_SSL_VERIFYPEER, false );
 		curl_setopt($this->ch, CURLOPT_CONNECTTIMEOUT, 3 );
-		curl_setopt($this->ch, CURLOPT_TIMEOUT, 5 );
+		curl_setopt($this->ch, CURLOPT_TIMEOUT, 7 );
 		curl_setopt($this->ch, CURLOPT_MAXREDIRS, 3 );
 		/*
 		It seems that by copying $ch instance, cookies can be preserved in the page session level,
@@ -259,9 +260,10 @@ class schoolBIT{
 	function parseScheduleTableMain(DOMElement $xD){
 		$return = [];
 		foreach($xD->getElementsByTagName('tr') as $i=>$tr){
-			if($i == 0) continue;//thead
+			$tds = $tr->getElementsByTagName('td');
 
-			$tds = $tr->getElementsByTagName('td');//nodeValue
+			if($i == 0 || preg_replace("/[\x{00a0}\x{200b}\s]+/u", '', $tds->item(0)->nodeValue) == '') continue;
+			// thead or blank line
 
 			$l = new LessonBIT(array(
 				'name'=>$tds->item(0)->nodeValue,
@@ -657,6 +659,151 @@ class schoolBIT{
 		}
 		return $attempt;
 	}
+
+	function getGradePageFetch($year=null, $term=null, $getviewstate = false){
+		$ch = $this->getCH();
+		curl_setopt($ch, CURLOPT_URL, $this->sessionPath."/xscjcx.aspx?xh=".$this->username."&xm=&gnmkdm=N121605");
+		if(!$getviewstate){
+			if(!$this->gradePagePostViewState){
+				$this->last_error = 'Ineeds_viewstate';
+				return false;
+			}
+
+			if($year && $term){
+				$param_mode = '&btn_xq=%D1%A7%C6%DA%B3%C9%BC%A8';
+			}else if($year){
+				$param_mode = '&btn_xn=%D1%A7%C6%DA%B3%C9%BC%A8';
+			}else{
+				$param_mode = '&btn_zcj=%D1%A7%C6%DA%B3%C9%BC%A8';
+			}
+			curl_setopt($ch, CURLOPT_POST, true);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, '__EVENTTARGET=&__EVENTARGUMENT=&__VIEWSTATE='.$this->gradePagePostViewState."&ddl_kcxz=&ddlXN=".$year."&ddlXQ=".$term.$param_mode);
+		}
+		
+		$html = curl_exec($ch);
+		$url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
+		$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+		if(strpos($url, 'xscjcx.aspx')){
+			if(preg_match("/alert\(\'(.+)'\);/", $html, $alertMatches)){
+				$this->last_error = iconv('GB2312', 'UTF-8//IGNORE', $alertMatches[1]);
+				return false;
+			}
+			if(curl_errno($ch) == 28){
+				$this->last_error = 'Itimeout_error';
+				return false;
+			}
+			if($httpcode && $httpcode != 200){
+				$this->last_error = 'Error '.$httpcode;
+				return false;
+			}
+			if($html === false){
+				//var_dump(curl_errno($ch), curl_error($ch));
+				$this->last_error = 'Iservice_error';
+				return false;
+			}
+			// else
+			$doc = new DOMDocument();
+			@$doc->loadHTML($html);
+			return array($html, $url, $httpcode, $doc);
+		}else{
+			//var_dump($url);
+			$this->last_error = 'Iservice_error';
+			return false;
+		}
+	}
+
+	function getGradePage($year=null, $term=null){
+		if(!$this->gradePagePostViewState){
+			$r = $this->getGradePageFetch(null, null, true);
+			if(!$r){
+				return false;
+			}else{
+				if(preg_match('/<input type="hidden" name="__VIEWSTATE" value="(.+?)" \/>/', $r[0], $vs_matches)){
+					$this->gradePagePostViewState = urlencode($vs_matches[1]);					
+				}else{
+					$this->last_error = 'Iparse_error';
+					return false;
+				}
+			}
+		}
+
+		$r = $this->getGradePageFetch($year, $term);
+		
+		if(!$r){
+			return false;
+		}
+		// else
+		list($html, $url, $httpcode, $doc) = $r;
+
+		// Get additional info
+		$info = array();
+		$titleDOM = $doc->getElementById('lbl_bt');
+
+		if($titleDOM && preg_match('/(([0-9\-]+)学年(第(\d)学期)?|在校)学习成绩/', $titleDOM->nodeValue, $title_matches)){
+			$info['year'] = isset($title_matches[2])?$title_matches[2]:NULL;
+			$info['term'] = isset($title_matches[4])?$title_matches[4]:NULL;
+		}else{
+			$this->last_error = 'Iservice_error';
+			// var_dump($html);
+			return false;
+		}
+
+		$table1 = $doc->getElementById('Datagrid1');
+
+		if($table1 && $table1->tagName == 'table'){
+			$label = $doc->getElementById('lbl_xh');
+			if($label){
+				$info['stuno'] = preg_replace("/^.+?：/", '', $label->nodeValue);
+			}
+			$label = $doc->getElementById('lbl_xm');
+			if($label){
+				$info['stuname'] = preg_replace("/^.+?：/", '', $label->nodeValue);
+			}
+			$label = $doc->getElementById('lbl_xy');
+			if($label){
+				$info['department'] = preg_replace("/^.+?：/", '', $label->nodeValue);
+			}
+			$label = $doc->getElementById('lbl_zymc');
+			if($label){
+				$info['major'] = $label->nodeValue;
+			}
+			$label = $doc->getElementById('lbl_xzb');
+			if($label){
+				$info['class'] = preg_replace("/^.+?：/", '', $label->nodeValue);
+			}
+			return array($info, $table1);
+		}else{
+			$this->last_error = 'Iparse_error';
+			//var_dump($html);
+			return false;
+		}
+	}
+
+	// @return Array
+	function parseGradeTableMain(DOMElement $xD){
+		$return = [];
+		foreach($xD->getElementsByTagName('tr') as $i=>$tr){
+			if($i == 0) continue;//thead
+
+			$tds = $tr->getElementsByTagName('td');//nodeValue
+
+			$l = new GradeBIT(array(
+				'name'=>$tds->item(3)->nodeValue,
+				'credit'=>$tds->item(6)->nodeValue*1,
+				'category'=>$tds->item(4)->nodeValue.(preg_replace("/[\x{00a0}\x{200b}\s]+/u", '', $tds->item(5)->nodeValue)?('/'.$tds->item(5)->nodeValue):''),
+				'grade'=>$tds->item(7)->nodeValue,
+				'reTest'=>$tds->item(9)->nodeValue,
+				'year'=>$tds->item(0)->nodeValue,
+				'term'=>$tds->item(1)->nodeValue,
+				'id'=>$tds->item(2)->nodeValue
+			));
+
+			$return[] = $l;
+		}
+
+		return $return;
+	}
 }
 
 Class LessonBIT{
@@ -853,4 +1000,25 @@ Class LessonScheduleBIT{
 	function getLesson(){
 		return $this->lesson;
 	}
+}
+
+Class GradeBIT{
+	public $name = '';
+	public $credit = 0;
+	public $category = '';
+	public $grade = '';// May be more than 100
+	public $id = '';
+	public $reTest = false;
+	public $year = null;
+	public $term = null;
+	function __construct($array=array()) {
+		if(!empty($array['name'])) $this->name = $array['name'];
+		if(!empty($array['credit'])) $this->credit = $array['credit'];
+		if(!empty($array['category'])) $this->category = $array['category'];
+		if(!empty($array['grade'])) $this->grade = $array['grade'];
+		if(!empty($array['id'])) $this->id = $array['id'];
+		if(!empty($array['reTest'])) $this->reTest = $array['reTest'];
+		if(!empty($array['year'])) $this->year = $array['year'];
+		if(!empty($array['term'])) $this->term = $array['term'];
+	}	
 }

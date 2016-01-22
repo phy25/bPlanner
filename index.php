@@ -30,6 +30,8 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'login'){
 			$pagemsg_type = 'error';
 		}else{
 			$tables = $school->getSchedulePage($_REQUEST['year'], $_REQUEST['term']); // '2014-2015', 2
+			//$tables_grade = $school->getGradePage($_REQUEST['year'], $_REQUEST['term']);
+			//if($tables_grade) $tg = $school->parseGradeTableMain($tables_grade[1]);
 			
 			if($tables){
 				$preData = '$tables_s = \''.serialize($tables). "';\n\n";
