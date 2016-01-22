@@ -142,7 +142,7 @@ class schoolBIT{
 			}
 			// else
 			$doc = new DOMDocument();
-			@$doc->loadHTML($html);
+			@$doc->loadHTML(str_replace('gb2312"', 'UTF-8"', iconv('GB2312', 'UTF-8//IGNORE', $html)));
 			return array($html, $url, $httpcode, $doc);
 		}else{
 			//var_dump($url);
