@@ -53,13 +53,13 @@ class schoolBIT{
 		return $key?array_flip(self::$weekLangArr):self::$weekLangArr;
 	}
 
-	private function setSessionPath($path){
+	protected function setSessionPath($path){
 		$this->sessionPath = $path;
 		curl_setopt($this->ch, CURLOPT_REFERER, $path.'/xs_main.aspx');
 	}
 
 	// Get new curl handle object with default settings
-	private function getCH(){
+	protected function getCH(){
 		return curl_copy_handle($this->ch);
 	}
 
@@ -257,7 +257,7 @@ class schoolBIT{
 	}
 
 	// @return Array
-	function parseScheduleTableMain(DOMElement $xD){
+	function parseScheduleTableMain($xD){
 		$return = [];
 		foreach($xD->getElementsByTagName('tr') as $i=>$tr){
 			$tds = $tr->getElementsByTagName('td');
@@ -493,7 +493,7 @@ class schoolBIT{
 	}
 
 	// @return Array
-	function parseScheduleTableChanges(DOMElement $xD){
+	function parseScheduleTableChanges($xD){
 		$returnl = array();
 		$returnd = array();
 
@@ -781,7 +781,7 @@ class schoolBIT{
 	}
 
 	// @return Array
-	function parseGradeTableMain(DOMElement $xD){
+	function parseGradeTableMain($xD){
 		$return = [];
 		foreach($xD->getElementsByTagName('tr') as $i=>$tr){
 			if($i == 0) continue;//thead
@@ -807,6 +807,7 @@ class schoolBIT{
 }
 
 Class LessonBIT{
+	public $id = '';
 	public $name = '';
 	public $credit = 0;
 	public $category = '';
@@ -816,6 +817,7 @@ Class LessonBIT{
 	public $changesTime = null;
 	public $schedule = array();
 	function __construct($array=array()) {
+		if(isset($array['id'])) $this->id = $array['id'];
 		if(isset($array['name'])) $this->name = $array['name'];
 		if(isset($array['credit'])) $this->credit = $array['credit'];
 		if(isset($array['category'])) $this->category = $array['category'];	
