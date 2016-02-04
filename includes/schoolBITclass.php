@@ -796,7 +796,8 @@ class schoolBIT{
 				'reTest'=>$tds->item(9)->nodeValue,
 				'year'=>$tds->item(0)->nodeValue,
 				'term'=>$tds->item(1)->nodeValue,
-				'id'=>$tds->item(2)->nodeValue
+				'id'=>$tds->item(2)->nodeValue,
+				'paperScore'=>$tds->item(8)->nodeValue
 			));
 
 			$return[] = $l;
@@ -885,6 +886,7 @@ Class LessonBIT{
 	function fillInfoFromLesson(LessonBIT $l){
 		$this->credit = $l->credit;
 		$this->category = $l->category;
+		$this->id = $l->id;
 	}
 }
 
@@ -1008,19 +1010,31 @@ Class GradeBIT{
 	public $name = '';
 	public $credit = 0;
 	public $category = '';
-	public $grade = '';// May be more than 100
+	public $grade = '';// May be more than 100, or 0, or Chinese
 	public $id = '';
 	public $reTest = false;
 	public $year = null;
 	public $term = null;
+	public $paperScore = null;
 	function __construct($array=array()) {
 		if(!empty($array['name'])) $this->name = $array['name'];
 		if(!empty($array['credit'])) $this->credit = $array['credit'];
 		if(!empty($array['category'])) $this->category = $array['category'];
-		if(!empty($array['grade'])) $this->grade = $array['grade'];
+		if(!empty($array['grade'])){
+			if(preg_replace("/[0-9]/", '', $array['grade']) === ''){
+				// There are numbers only
+				$this->grade = (int) $array['grade'];
+			}else{
+				$this->grade = $array['grade'];
+			}
+		}
 		if(!empty($array['id'])) $this->id = $array['id'];
 		if(!empty($array['reTest'])) $this->reTest = $array['reTest'];
 		if(!empty($array['year'])) $this->year = $array['year'];
 		if(!empty($array['term'])) $this->term = $array['term'];
-	}	
+		if(!empty($array['paperScore'])) $this->paperScore = $array['paperScore'];
+	}
+	function getLessonHash(){
+		return $this->credit.'|'.$this->id.'|'.$this->name;
+	}
 }
