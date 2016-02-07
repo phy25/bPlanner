@@ -805,6 +805,10 @@ class schoolBIT{
 
 		return $return;
 	}
+
+	function mergeLowerGrade(Array $array){
+		return $array;
+	}
 }
 
 Class LessonBIT{
