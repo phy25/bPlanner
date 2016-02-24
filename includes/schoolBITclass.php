@@ -588,19 +588,22 @@ class schoolBIT{
 
 		$year = substr($year, 0, 4)-1+$term;
 
+		$oldid = $week*7-8+$weekday;
 		$id = $week*7-8+$weekday;
+		if($id<0) return false;
 		$orig = 1;
-		$day = (int) $result->item($id)->nodeValue;
+		$day = $result->item($id)->nodeValue;
 
 		$month = $day;
+		$day = (int) $day;
 		while(strpos($month, '月') == false && $id){
 			$id--;
 			$orig = 0;
 			$month = $result->item($id)->nodeValue;
 		}
+
 		if(!$id){
-			$id++;
-			while(strpos($month, '月') == false && $id){
+			while(strpos($month, '月') == false){
 				$id++;
 				$orig = 0;
 				$month = $result->item($id)->nodeValue;
