@@ -12,10 +12,11 @@ class schoolBIT{
 	protected static $weekLangArr = array('','一','二','三','四','五','六','日');
 	protected $schedulePagePostViewState = '';
 	protected $gradePagePostViewState = '';
+	protected $examSchedulePagePostViewState = '';
 
 	function __construct($username=null, $password=null){
 		$this->setLoginInfo($username, $password);
-		
+
 		// Init curl handle
 		$this->ch = curl_init();
 		curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, 1);
@@ -197,7 +198,7 @@ class schoolBIT{
 		}else{
 			$r = $this->getSchedulePageFetch($year, $term);
 		}
-		
+
 		if(!$r){
 			return false;
 		}
@@ -258,7 +259,7 @@ class schoolBIT{
 
 	// @return Array
 	function parseScheduleTableMain($xD){
-		$return = [];
+		$return = array();
 		foreach($xD->getElementsByTagName('tr') as $i=>$tr){
 			$tds = $tr->getElementsByTagName('td');
 
@@ -312,7 +313,7 @@ class schoolBIT{
 				$lsarray['location'] = preg_replace("/[\x{00a0}\x{200b}\s]+/u", '', $tdLoc[$time_i]);
 
 				if(empty($lsarray['week']) || !isset($lsarray['day']) || !isset($lsarray['startTime']) || !isset($lsarray['durationTime'])){
-					
+
 				}else{
 					$l->addSchedule(new LessonScheduleBIT($lsarray));
 				}
@@ -358,7 +359,7 @@ class schoolBIT{
 			$lsarray['location'] = preg_replace("/[\x{00a0}\x{200b}\s]+/u", '', $cInfoMatch[7]);
 
 			if(empty($lsarray['week']) || !isset($lsarray['day']) || !isset($lsarray['startTime']) || !isset($lsarray['durationTime'])){
-				
+
 			}else{
 				$l->addSchedule(new LessonScheduleBIT($lsarray));
 			}
@@ -518,19 +519,19 @@ class schoolBIT{
 				$l->name = $tds->item(1)->nodeValue;
 			}
 
-			if(strpos($changesID, '换') === 0 || strpos($changesID, '调') === 0){
+			if(strpos($changesID, '换') === 0 || strpos($changesID, '调') === 0 || strpos($changesID, '停') === 0){
 				$ld = $this->_parseScheduleTableChangesLessonText($tds->item(2)->nodeValue, 'LessonBITDeletion');
 				$ld->changesID = $changesID;
 				$ld->changesTime = $tds->item(4)->nodeValue;
 				$ld->name = $tds->item(1)->nodeValue;
 
-				$l->schedule[0]->originalHashPerWeek = $ld->schedule[0]->getHashPerWeek();
+				if(isset($l)) $l->schedule[0]->originalHashPerWeek = $ld->schedule[0]->getHashPerWeek();
 
 				$returnl[] = $ld;
 				//$returnd = $this->mergeChangedLesson($returnd, $ld);
 			}
 
-			$returnl[] = $l;
+			if(isset($l)) $returnl[] = $l;
 			//$returnl = $this->mergeChangedLesson($returnl, $l);
 		}
 
@@ -613,7 +614,7 @@ class schoolBIT{
 		}else{
 			$month = (int) str_replace('月', '', $month);
 		}
-		
+
 		$day = $orig?1:$day;
 
 		if($term == 1 && $month < 7){
@@ -629,7 +630,7 @@ class schoolBIT{
 	 */
 	function getCurrentWeekFetch($year, $term){
 		$result = $this->getSchoolCalendarFetch($year, $term);
-		
+
 		if(preg_match('/<th>(\d+)<\/th>\s+(<td class=".*">.+<\/td>\s+){0,6}?<td class=".*today/', $result, $matches)){
 			// /<th>(\d+)<\/th>(?:(?!tr)[\s\S])*<td class=".*today/
 			// This is slower; don't use this!
@@ -682,7 +683,7 @@ class schoolBIT{
 			curl_setopt($ch, CURLOPT_POST, true);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, '__EVENTTARGET=&__EVENTARGUMENT=&__VIEWSTATE='.$this->gradePagePostViewState."&ddl_kcxz=&ddlXN=".$year."&ddlXQ=".$term.$param_mode);
 		}
-		
+
 		$html = curl_exec($ch);
 		$url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
 		$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -723,7 +724,7 @@ class schoolBIT{
 				return false;
 			}else{
 				if(preg_match('/<input type="hidden" name="__VIEWSTATE" value="(.+?)" \/>/', $r[0], $vs_matches)){
-					$this->gradePagePostViewState = urlencode($vs_matches[1]);					
+					$this->gradePagePostViewState = urlencode($vs_matches[1]);
 				}else{
 					$this->last_error = 'Iparse_error';
 					return false;
@@ -732,7 +733,7 @@ class schoolBIT{
 		}
 
 		$r = $this->getGradePageFetch($year, $term);
-		
+
 		if(!$r){
 			return false;
 		}
@@ -785,7 +786,7 @@ class schoolBIT{
 
 	// @return Array
 	function parseGradeTableMain($xD){
-		$return = [];
+		$return = array();
 		foreach($xD->getElementsByTagName('tr') as $i=>$tr){
 			if($i == 0) continue;//thead
 
@@ -812,6 +813,170 @@ class schoolBIT{
 	function mergeLowerGrade(Array $array){
 		return $array;
 	}
+
+	function getExamSchedulePageFetch($year=null, $term=null){
+		$ch = $this->getCH();
+		curl_setopt($ch, CURLOPT_URL, $this->sessionPath."/xskscx.aspx?xh=".$this->username."&xm=&gnmkdm=N121604");
+		if($year && $term){
+			if(!$this->examSchedulePagePostViewState){
+				$this->last_error = 'Ineeds_viewstate';
+				return false;
+			}
+			curl_setopt($ch, CURLOPT_POST, true);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, '__EVENTTARGET=xqd&__EVENTARGUMENT=&__VIEWSTATE='.$this->examSchedulePagePostViewState."&xnd=".$year."&xqd=".$term);
+		}
+		$html = curl_exec($ch);
+		$url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
+		$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+		if(strpos($url, 'xskscx.aspx')){
+			if(preg_match("/alert\(\'(.+)'\);/", $html, $alertMatches)){
+				$this->last_error = iconv('GB2312', 'UTF-8//IGNORE', $alertMatches[1]);
+				return false;
+			}
+			if(curl_errno($ch) == 28){
+				$this->last_error = 'Itimeout_error';
+				return false;
+			}
+			if($httpcode && $httpcode != 200){
+				$this->last_error = 'Error '.$httpcode;
+				return false;
+			}
+			if($html === false){
+				//var_dump(curl_errno($ch), curl_error($ch));
+				$this->last_error = 'Iservice_error';
+				return false;
+			}
+			// else
+			$doc = new DOMDocument();
+			@$doc->loadHTML(str_replace('gb2312"', 'UTF-8"', iconv('GB2312', 'UTF-8//IGNORE', $html)));
+			return array($html, $url, $httpcode, $doc);
+		}else{
+			//var_dump($url);
+			$this->last_error = 'Iservice_error';
+			return false;
+		}
+	}
+
+	/*
+	 * @return Array [Array $info, Array $table1, Array $table2]
+	 *         - $info basic info (term, major...)
+	 *         - $table1 main lesson schedule
+	 *         - $table2 lesson schedule changes
+	 */
+	function getExamSchedulePage($year=null, $term=null){
+		if($year && $term && !$this->examSchedulePagePostViewState){
+			$r = $this->getExamSchedulePageFetch();
+			if(!$r){
+				return false;
+			}else{
+				if(preg_match('/<input type="hidden" name="__VIEWSTATE" value="(.+?)" \/>/', $r[0], $vs_matches)){
+					$this->examSchedulePagePostViewState = urlencode($vs_matches[1]);
+					$info = array();
+					$xnd = $r[3]->getElementById('xnd');
+					if($xnd){
+						$xnd = $xnd->getElementsByTagName('option');
+						foreach($xnd as $i=>$option){
+							if($option->getAttribute('selected') === 'selected'){
+								$info['year'] = $option->nodeValue;
+							}
+						}
+					}
+					$xnd = $r[3]->getElementById('xqd');
+					if($xnd){
+						$xnd = $xnd->getElementsByTagName('option');
+						foreach($xnd as $i=>$option){
+							if($option->getAttribute('selected') === 'selected'){
+								$info['term'] = $option->nodeValue;
+							}
+						}
+					}
+					if($info['year'] == $year && $info['term'] == $term){
+						// Don't do duplicate request
+					}else{
+						$r = $this->getExamSchedulePageFetch($year, $term);
+					}
+				}else{
+					$this->last_error = 'Iparse_error';
+					return false;
+				}
+			}
+		}else{
+			$r = $this->getSchedulePageFetch($year, $term);
+		}
+
+		if(!$r){
+			return false;
+		}
+		// else
+		list($html, $url, $httpcode, $doc) = $r;
+
+		$table1 = $doc->getElementById('DataGrid1');
+
+		if($table1 && $table1->tagName == 'table'){
+			$info = array();
+			$xnd = $doc->getElementById('xnd');
+			if($xnd){
+				$xnd = $xnd->getElementsByTagName('option');
+				foreach($xnd as $i=>$option){
+					if($option->getAttribute('selected') === 'selected'){
+						$info['year'] = $option->nodeValue;
+					}
+				}
+			}
+			$xnd = $doc->getElementById('xqd');
+			if($xnd){
+				$xnd = $xnd->getElementsByTagName('option');
+				foreach($xnd as $i=>$option){
+					if($option->getAttribute('selected') === 'selected'){
+						$info['term'] = $option->nodeValue;
+					}
+				}
+			}
+			return array($info, $table1);
+		}else{
+			$this->last_error = 'Iparse_error';
+			//var_dump($html);
+			return false;
+		}
+	}
+
+	// @return Array
+	function parseExamScheduleTableMain($xD){
+		$return = array();
+		foreach($xD->getElementsByTagName('tr') as $i=>$tr){
+			$tds = $tr->getElementsByTagName('td');
+
+			if($i == 0 || preg_replace("/[\x{00a0}\x{200b}\s]+/u", '', $tds->item(3)->textContent) == '') continue;
+			// thead or blank line
+
+			$dateOrig = $tds->item(3)->textContent;
+			if(preg_match("/(\d+)年(\d+)月(\d+)日\(([0-9:]+)-([0-9:]+)\)/u", $dateOrig, $dateMatch)){
+				$date = $dateMatch[1].'-'.$dateMatch[2].'-'.$dateMatch[3];
+				$startTime = $dateMatch[4];
+				$endTime = $dateMatch[5];
+			}else if(preg_match("/第(\d+)周周(\d+)\(([0-9-]+)\) ([0-9:]+)-([0-9:]+)/u", $dateOrig, $dateMatch)){
+				$date = $dateMatch[3];
+				$startTime = $dateMatch[4];
+				$endTime = $dateMatch[5];
+			}
+
+			$l = new ExamScheduleBIT(array(
+				'id'=>$tds->item(0)->textContent,
+				'name'=>$tds->item(1)->textContent,
+				'dateOrig'=>$dateOrig,
+				'date'=>$date,
+				'startTime'=>$startTime,
+				'endTime'=>$endTime,
+				'location'=>$tds->item(4)->textContent,
+				'seat'=>$tds->item(6)->textContent
+			));
+
+			$return[] = $l;
+		}
+
+		return $return;
+	}
 }
 
 Class LessonBIT{
@@ -828,11 +993,11 @@ Class LessonBIT{
 		if(isset($array['id'])) $this->id = $array['id'];
 		if(isset($array['name'])) $this->name = $array['name'];
 		if(isset($array['credit'])) $this->credit = $array['credit'];
-		if(isset($array['category'])) $this->category = $array['category'];	
-		if(isset($array['tutor'])) $this->tutor = $array['tutor'];	
-		if(isset($array['department'])) $this->department = $array['department'];	
-		if(isset($array['changesID'])) $this->changesID = $array['changesID'];	
-		if(isset($array['changesTime'])) $this->changesTime = $array['changesTime'];	
+		if(isset($array['category'])) $this->category = $array['category'];
+		if(isset($array['tutor'])) $this->tutor = $array['tutor'];
+		if(isset($array['department'])) $this->department = $array['department'];
+		if(isset($array['changesID'])) $this->changesID = $array['changesID'];
+		if(isset($array['changesTime'])) $this->changesTime = $array['changesTime'];
 	}
 	function getHash($tutor = 0){
 		return $this->name.'|'.($tutor?$this->tutor:$this->department);
@@ -852,7 +1017,7 @@ Class LessonBIT{
 		if($sHash){
 			$this->schedule[] = $s;
 		}
-		
+
 		$this->sortSchedule();
 	}
 	function mergeNearSchedule(){
@@ -901,7 +1066,7 @@ class LessonBITDeletion extends LessonBIT{
 
 }
 Class LessonScheduleBIT{
-	public $week = [];
+	public $week = array();
 	public $day = 0;
 	public $location = '';
 	public $startTime = 1;
@@ -912,7 +1077,7 @@ Class LessonScheduleBIT{
 		if(is_array($array['week'])) $this->week = $array['week'];
 		if(isset($array['day'])) $this->day = $array['day'];
 		if(isset($array['location'])) $this->location = $array['location'];
-		if(isset($array['startTime'])) $this->startTime = $array['startTime'];	
+		if(isset($array['startTime'])) $this->startTime = $array['startTime'];
 		if(isset($array['durationTime'])) $this->durationTime = $array['durationTime'];
 
 		$this->originalHashPerWeek = $this->getHashPerWeek();
@@ -1043,5 +1208,26 @@ Class GradeBIT{
 	}
 	function getLessonHash(){
 		return $this->credit.'|'.$this->id.'|'.$this->name;
+	}
+}
+
+Class ExamScheduleBIT{
+	public $id = '';
+	public $name = '';
+	public $dateOriginal = '';
+	public $date = '';
+	public $startTime = '';
+	public $endTime = '';
+	public $location = '';
+	public $seat = '';
+	function __construct($array=array()) {
+		if(isset($array['id'])) $this->id = $array['id'];
+		if(isset($array['name'])) $this->name = $array['name'];
+		if(isset($array['dateOrig'])) $this->dateOriginal = $array['dateOrig'];
+		if(isset($array['location'])) $this->location = $array['location'];
+		if(isset($array['seat'])) $this->seat = $array['seat'];
+		if(isset($array['date'])) $this->date = $array['date'];
+		if(isset($array['startTime'])) $this->startTime = $array['startTime'];
+		if(isset($array['endTime'])) $this->endTime = $array['endTime'];
 	}
 }

@@ -1,3 +1,8 @@
+p{
+  margin: 0;
+  line-height: 2em;
+}
+
 .demo-ribbon {
   width: 100%;
   height: 40vh;
