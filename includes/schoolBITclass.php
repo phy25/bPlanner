@@ -80,6 +80,10 @@ class schoolBIT{
 		curl_setopt($ch, CURLOPT_POSTFIELDS, "__VIEWSTATE=dDwtMjEzNzcwMzMxNTs7Pj9pP88cTsuxYpAH69XV04GPpkse&TextBox1=".$this->username."&TextBox2=".urlencode($this->password)."&RadioButtonList1=%D1%A7%C9%FA&Button1=+%B5%C7+%C2%BC");
 		$result = curl_exec($ch);
 		$url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
+		$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		$errno = curl_errno($ch);
+		curl_close($ch);
+
 		if(strlen($url) < 42){
 			// Error
 			$this->last_error = 'Inetwork_error';
@@ -88,12 +92,11 @@ class schoolBIT{
 			$this->setSessionPath(pathinfo($url, PATHINFO_DIRNAME));
 			return true;
 		}else{
-			$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 			if(preg_match("/alert\(\'(.+)'\);/", $result, $matches)){
 				$this->last_error = iconv('GB2312', 'UTF-8//IGNORE', $matches[1]);
 			}else if(strpos($result, iconv('UTF-8', 'GB2312//IGNORE', '<input type="submit" name="Button1" value=" 登 录 "'))){
 				$this->last_error = 'Iservice_error';
-			}else if(curl_errno($ch) == 28){
+			}else if($errno == 28){
 				$this->last_error = 'Itimeout_error';
 				return false;
 			}else if($httpcode && $httpcode != 200){
@@ -114,6 +117,7 @@ class schoolBIT{
 		if($year && $term){
 			if(!$this->schedulePagePostViewState){
 				$this->last_error = 'Ineeds_viewstate';
+				curl_close($ch);
 				return false;
 			}
 			curl_setopt($ch, CURLOPT_POST, true);
@@ -122,13 +126,15 @@ class schoolBIT{
 		$html = curl_exec($ch);
 		$url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
 		$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		$errno = curl_errno($ch);
+		curl_close($ch);
 
 		if(strpos($url, 'xskbcx.aspx')){
 			if(preg_match("/alert\(\'(.+)'\);/", $html, $alertMatches)){
 				$this->last_error = iconv('GB2312', 'UTF-8//IGNORE', $alertMatches[1]);
 				return false;
 			}
-			if(curl_errno($ch) == 28){
+			if($errno == 28){
 				$this->last_error = 'Itimeout_error';
 				return false;
 			}
@@ -563,6 +569,7 @@ class schoolBIT{
 			curl_setopt($ch, CURLOPT_URL, 'http://weixin.info.bit.edu.cn/schoolCalendar/wechatQuery?code='.$year.'-'.$term);
 			curl_setopt($ch, CURLOPT_REFERER, '');
 			$result = curl_exec($ch);
+			curl_close($ch);
 			$this->calendarCache[$year.'-'.$term][0] = $result;
 		}
 
@@ -670,6 +677,7 @@ class schoolBIT{
 		if(!$getviewstate){
 			if(!$this->gradePagePostViewState){
 				$this->last_error = 'Ineeds_viewstate';
+				curl_close($ch);
 				return false;
 			}
 
@@ -687,13 +695,15 @@ class schoolBIT{
 		$html = curl_exec($ch);
 		$url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
 		$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		$errno = curl_errno($ch);
+		curl_close($ch);
 
 		if(strpos($url, 'xscjcx.aspx')){
 			if(preg_match("/alert\(\'(.+)'\);/", $html, $alertMatches)){
 				$this->last_error = iconv('GB2312', 'UTF-8//IGNORE', $alertMatches[1]);
 				return false;
 			}
-			if(curl_errno($ch) == 28){
+			if($errno == 28){
 				$this->last_error = 'Itimeout_error';
 				return false;
 			}
@@ -820,6 +830,7 @@ class schoolBIT{
 		if($year && $term){
 			if(!$this->examSchedulePagePostViewState){
 				$this->last_error = 'Ineeds_viewstate';
+				curl_close($ch);
 				return false;
 			}
 			curl_setopt($ch, CURLOPT_POST, true);
@@ -828,13 +839,15 @@ class schoolBIT{
 		$html = curl_exec($ch);
 		$url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
 		$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		$errno = curl_errno($ch);
+		curl_close($ch);
 
 		if(strpos($url, 'xskscx.aspx')){
 			if(preg_match("/alert\(\'(.+)'\);/", $html, $alertMatches)){
 				$this->last_error = iconv('GB2312', 'UTF-8//IGNORE', $alertMatches[1]);
 				return false;
 			}
-			if(curl_errno($ch) == 28){
+			if($errno == 28){
 				$this->last_error = 'Itimeout_error';
 				return false;
 			}
