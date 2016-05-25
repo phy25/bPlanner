@@ -335,7 +335,9 @@ class schoolBIT{
 	// @param $cInfo strings being parsed
 	// @return LessonBIT
 	function _parseScheduleTableChangesLessonText($cInfo, $class = 'LessonBIT'){
-		if(preg_match("/^(.+)\((.+)\)周(\d)第(\d+)节连续(\d)节.*?(\/(.*))?$/u", $cInfo, $cInfoMatch)){
+		if(preg_match("/^(.+)\((.+)\)周(\d)第(\d+)节连续(\d)?节.*?(\/(.*))?$/u", $cInfo, $cInfoMatch)){
+			// There might be rare situation when $cInfoMatch[5] is null
+			// Handle that in main function
 			$l = new $class(array(
 				'tutor'=>$cInfoMatch[1],
 				'department'=>$cInfoMatch[2],
@@ -517,27 +519,29 @@ class schoolBIT{
 			$tds = $tr->getElementsByTagName('td');//nodeValue
 			$changesID = $tds->item(0)->nodeValue;
 
-			if(strpos($changesID, '补') === 0 || strpos($changesID, '换') === 0 || strpos($changesID, '调') === 0){
-				$cInfo = $tds->item(3)->nodeValue;
-				$l = $this->_parseScheduleTableChangesLessonText($cInfo);
-				$l->changesID = $changesID;
-				$l->changesTime = $tds->item(4)->nodeValue;
-				$l->name = $tds->item(1)->nodeValue;
-			}
-
 			if(strpos($changesID, '换') === 0 || strpos($changesID, '调') === 0 || strpos($changesID, '停') === 0){
 				$ld = $this->_parseScheduleTableChangesLessonText($tds->item(2)->nodeValue, 'LessonBITDeletion');
 				$ld->changesID = $changesID;
 				$ld->changesTime = $tds->item(4)->nodeValue;
 				$ld->name = $tds->item(1)->nodeValue;
 
-				if(isset($l)) $l->schedule[0]->originalHashPerWeek = $ld->schedule[0]->getHashPerWeek();
-
 				$returnl[] = $ld;
 				//$returnd = $this->mergeChangedLesson($returnd, $ld);
 			}
 
-			if(isset($l)) $returnl[] = $l;
+			if(strpos($changesID, '补') === 0 || strpos($changesID, '换') === 0 || strpos($changesID, '调') === 0){
+				$cInfo = $tds->item(3)->nodeValue;
+				$l = $this->_parseScheduleTableChangesLessonText($cInfo);
+				$l->changesID = $changesID;
+				$l->changesTime = $tds->item(4)->nodeValue;
+				$l->name = $tds->item(1)->nodeValue;
+				if(isset($ld) && $l->schedule[0]->durationTime == '') $l->schedule[0]->durationTime = $ld->schedule[0]->durationTime;
+				// Trying to fix durationTime
+
+				if(isset($ld)) $l->schedule[0]->originalHashPerWeek = $ld->schedule[0]->getHashPerWeek();
+
+				$returnl[] = $l;
+			}
 			//$returnl = $this->mergeChangedLesson($returnl, $l);
 		}
 
