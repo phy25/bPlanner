@@ -566,11 +566,36 @@ class schoolBIT{
 
 	// @return String
 	function getSchoolCalendarFetch($year, $term){
+		$termTranslate = array(1=>'一', 2=>'二');
+		if(!isset($termTranslate[$term])){
+			$this->last_error = 'Iterm_error';
+			return false;
+		}
 		if(isset($this->calendarCache[$year.'-'.$term][0])){
 			$result = $this->calendarCache[$year.'-'.$term][0];
 		}else{
 			$ch = $this->getCH();
-			curl_setopt($ch, CURLOPT_URL, 'http://weixin.info.bit.edu.cn/schoolCalendar/wechatQuery?code='.$year.'-'.$term);
+			curl_setopt($ch, CURLOPT_URL, 'http://weixin.info.bit.edu.cn/wappSchoolCalendarViewer/wechatIndex');
+			curl_setopt($ch, CURLOPT_REFERER, '');
+			$result = curl_exec($ch);
+			curl_close($ch);
+
+			if(!$result){
+				$this->last_error = 'Icalservice_error';
+			}
+
+			if(!preg_match("/body[\s\S]+".str_replace('-', '.', $year)."学年第".$termTranslate[$term]."学期/", $result, $res_area)){
+				$this->last_error = 'Icalservice_error';
+				return false;
+			}
+
+			if(!preg_match_all("/\/wappSchoolCalendarViewer\/wechatShow\/\w+/", $res_area[0], $res_matches)){
+				$this->last_error = 'Iterm_error';
+				return false;
+			}
+
+			$ch = $this->getCH();
+			curl_setopt($ch, CURLOPT_URL, 'http://weixin.info.bit.edu.cn'.$res_matches[0][count($res_matches[0])-1]);
 			curl_setopt($ch, CURLOPT_REFERER, '');
 			$result = curl_exec($ch);
 			curl_close($ch);
@@ -675,9 +700,20 @@ class schoolBIT{
 		return $attempt;
 	}
 
+	function getLastWeek($year, $term){
+		$result = $this->getSchoolCalendarFetch($year, $term);
+		if(preg_match_all('/<th>(\d+)<\/th>/', $result, $matches)){
+			// /<th>(\d+)<\/th>(?:(?!tr)[\s\S])*<td class=".*today/
+			// This is slower; don't use this!
+			return (int) $matches[1][count($matches[1])-1];
+		}else{
+			return 0;
+		}
+	}
+
 	function getGradePageFetch($year=null, $term=null, $getviewstate = false){
 		$ch = $this->getCH();
-		curl_setopt($ch, CURLOPT_URL, $this->sessionPath."/xscjcx.aspx?xh=".$this->username."&xm=&gnmkdm=N121605");
+		curl_setopt($ch, CURLOPT_URL, $this->sessionPath."/xscj.aspx?xh=".$this->username."&xm=&gnmkdm=N121605");
 		if(!$getviewstate){
 			if(!$this->gradePagePostViewState){
 				$this->last_error = 'Ineeds_viewstate';
@@ -686,11 +722,11 @@ class schoolBIT{
 			}
 
 			if($year && $term){
-				$param_mode = '&btn_xq=%D1%A7%C6%DA%B3%C9%BC%A8';
+				$param_mode = '&Button1=1';//'&btn_xq=%D1%A7%C6%DA%B3%C9%BC%A8';
 			}else if($year){
-				$param_mode = '&btn_xn=%D1%A7%C6%DA%B3%C9%BC%A8';
+				$param_mode = '&Button5=1';//'&btn_xn=%D1%A7%C6%DA%B3%C9%BC%A8';
 			}else{
-				$param_mode = '&btn_zcj=%D1%A7%C6%DA%B3%C9%BC%A8';
+				$param_mode = '&Button2=1';//'&btn_zcj=%D1%A7%C6%DA%B3%C9%BC%A8';
 			}
 			curl_setopt($ch, CURLOPT_POST, true);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, '__EVENTTARGET=&__EVENTARGUMENT=&__VIEWSTATE='.$this->gradePagePostViewState."&ddl_kcxz=&ddlXN=".$year."&ddlXQ=".$term.$param_mode);
@@ -702,7 +738,7 @@ class schoolBIT{
 		$errno = curl_errno($ch);
 		curl_close($ch);
 
-		if(strpos($url, 'xscjcx.aspx')){
+		if(strpos($url, 'xscj.aspx')){
 			if(preg_match("/alert\(\'(.+)'\);/", $html, $alertMatches)){
 				$this->last_error = iconv('GB2312', 'UTF-8//IGNORE', $alertMatches[1]);
 				return false;
@@ -756,7 +792,7 @@ class schoolBIT{
 
 		// Get additional info
 		$info = array();
-		$titleDOM = $doc->getElementById('lbl_bt');
+		$titleDOM = $doc->getElementById('Label4');//lbl_bt
 
 		if($titleDOM && preg_match('/(([0-9\-]+)学年(第(\d)学期)?|在校)学习成绩/', $titleDOM->nodeValue, $title_matches)){
 			$info['year'] = isset($title_matches[2])?$title_matches[2]:NULL;
@@ -767,26 +803,26 @@ class schoolBIT{
 			return false;
 		}
 
-		$table1 = $doc->getElementById('Datagrid1');
+		$table1 = $doc->getElementById('DataGrid1');
 
 		if($table1 && $table1->tagName == 'table'){
-			$label = $doc->getElementById('lbl_xh');
+			$label = $doc->getElementById('Label3');//lbl_xh
 			if($label){
 				$info['stuno'] = preg_replace("/^.+?：/", '', $label->nodeValue);
 			}
-			$label = $doc->getElementById('lbl_xm');
+			$label = $doc->getElementById('Label5');//lbl_xm
 			if($label){
 				$info['stuname'] = preg_replace("/^.+?：/", '', $label->nodeValue);
 			}
-			$label = $doc->getElementById('lbl_xy');
+			$label = $doc->getElementById('Label6');//lbl_xy
 			if($label){
 				$info['department'] = preg_replace("/^.+?：/", '', $label->nodeValue);
 			}
-			$label = $doc->getElementById('lbl_zymc');
+			$label = $doc->getElementById('Label7');//lbl_zymc
 			if($label){
 				$info['major'] = $label->nodeValue;
 			}
-			$label = $doc->getElementById('lbl_xzb');
+			$label = $doc->getElementById('Label8');//lbl_xzb
 			if($label){
 				$info['class'] = preg_replace("/^.+?：/", '', $label->nodeValue);
 			}
@@ -807,15 +843,17 @@ class schoolBIT{
 			$tds = $tr->getElementsByTagName('td');//nodeValue
 
 			$l = new GradeBIT(array(
-				'name'=>$tds->item(3)->nodeValue,
+				'name'=>$tds->item(1)->nodeValue,
 				'credit'=>$tds->item(6)->nodeValue*1,
-				'category'=>$tds->item(4)->nodeValue.(preg_replace("/[\x{00a0}\x{200b}\s]+/u", '', $tds->item(5)->nodeValue)?('/'.$tds->item(5)->nodeValue):''),
-				'grade'=>$tds->item(7)->nodeValue,
-				'reTest'=>$tds->item(9)->nodeValue,
-				'year'=>$tds->item(0)->nodeValue,
-				'term'=>$tds->item(1)->nodeValue,
-				'id'=>$tds->item(2)->nodeValue,
-				'paperScore'=>$tds->item(8)->nodeValue
+				'category'=>$tds->item(2)->nodeValue,
+				//.(preg_replace("/[\x{00a0}\x{200b}\s]+/u", '', $tds->item(5)->nodeValue)?('/'.$tds->item(5)->nodeValue):''),
+				'grade'=>$tds->item(3)->nodeValue,
+				'reTest'=>$tds->item(8)->nodeValue,
+				//'year'=>$tds->item(0)->nodeValue,
+				//'term'=>$tds->item(1)->nodeValue,
+				'id'=>$tds->item(0)->nodeValue,
+				//'paperScore'=>$tds->item(3)->nodeValue
+				// ignore 辅修
 			));
 
 			$return[] = $l;
